@@ -6,7 +6,7 @@ const openNProgress = new Boolean(process.env.openNProgress);
 export function createProgressStartGuard(router: VueRouter): void {
   if (openNProgress) {
     router.beforeEach(async (to, from, next) => {
-      if (to.meta.topProgress !== false) {
+      if (to.meta?.topProgress !== false) {
         NProgress.start();
       }
       next();
@@ -18,7 +18,7 @@ export function createProgressStartGuard(router: VueRouter): void {
 export function createProgressEndGuard(router: VueRouter): void {
   if (openNProgress) {
     router.afterEach(async (to) => {
-      if (to.meta.topProgress !== false) {
+      if (to.meta?.topProgress !== false) {
         NProgress.done();
       }
       return true;
@@ -30,7 +30,7 @@ export function createProgressGuard(router: VueRouter): void {
     // NProgress.inc(0.1);
     // NProgress.configure({ easing: 'ease', speed: 200, showSpinner: false });
     router.beforeEach(async (to, from, next) => {
-      if (to.meta.topProgress !== false) {
+      if (to.meta?.topProgress !== false) {
         NProgress.start();
       }
       next();
@@ -38,7 +38,7 @@ export function createProgressGuard(router: VueRouter): void {
     });
 
     router.afterEach(async (to) => {
-      if (to.meta.topProgress !== false) {
+      if (to.meta?.topProgress !== false) {
         NProgress.done();
       }
       return true;
