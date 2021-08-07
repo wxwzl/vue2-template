@@ -10,7 +10,7 @@
 - 良好的路由守卫逻辑结构
 - 良好的 css 样式初始化
 - 良好的目录结构
-- eslint 语法校验和 prettier 格式化
+- eslint 语法校验、prettier 格式化、stylelint 格式化 css 样式
 - git 提交信息校验
 - 通过 npm 命令生成 changelog
 - 部分常用工具类
