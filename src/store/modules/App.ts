@@ -1,7 +1,11 @@
-import { VuexModule, Module } from "vuex-module-decorators";
+import { VuexModule, Module, getModule } from "vuex-module-decorators";
+import instance from "@store/instance";
 @Module({
   namespaced: true,
   stateFactory: true,
   name: "App",
+  dynamic: true,
+  store: instance,
 })
-export default class App extends VuexModule {}
+export class App extends VuexModule {}
+export default getModule(App);
