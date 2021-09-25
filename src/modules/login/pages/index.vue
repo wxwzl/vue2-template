@@ -96,53 +96,53 @@
 </script>
 <style lang="less" scoped>
   .login-wrapper {
+    position: relative;
+    height: 100%;
     background-image: url("../assets/images/banner_bg.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    position: relative;
-    height: 100%;
     .container {
-      background-color: #fff;
-      width: 800px;
-      height: 405px;
       position: fixed;
-      left: 0;
       top: 0;
       right: 0;
       bottom: 0;
+      left: 0;
+      width: 800px;
+      height: 405px;
       margin: auto auto;
+      background-color: #fff;
       .show-image {
-        float: left;
         width: 423px;
         height: 100%;
+        padding: 20px 20px;
         // background-image: url("../assets/images/left_banner.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        padding: 20px 20px;
+        float: left;
         .tip-bar {
-          line-height: initial;
-          border: 1px solid #ddd;
           height: 100%;
+          border: 1px solid #ddd;
           background-color: mintcream;
+          line-height: initial;
           .tip-wrap {
             display: inline-block;
-            height: 100%;
             overflow: hidden;
             width: 0;
+            height: 100%;
             animation: typing 5s steps(37, end) forwards;
-            text-align: center;
-            font-size: 18px;
             font-family: Consolas, Monaco;
+            font-size: 18px;
+            text-align: center;
             word-break: break-all;
           }
           .tip {
             vertical-align: middle;
             word-break: break-all;
             &::before {
-              content: "";
               display: inline-block;
               width: 0;
               height: 100%;
+              content: "";
               line-height: initial;
               vertical-align: middle;
             }
@@ -154,16 +154,16 @@
         height: 100%;
         padding: 0 38.5px;
         .form-title {
-          margin-top: 46px;
-          border-bottom: 1px solid #ececec;
           padding-bottom: 2px;
+          border-bottom: 1px solid #ececec;
+          margin-top: 46px;
           .text {
+            padding-bottom: 10px;
             border-bottom: 4px solid #2688fc;
+            color: #333;
             font-size: 18px;
             font-weight: bold;
-            color: #333333;
             line-height: 48px;
-            padding-bottom: 10px;
           }
         }
         .login-form {
@@ -175,31 +175,31 @@
             }
           }
           /deep/.el-form-item__label {
+            color: #333;
             font-size: 14px;
             font-weight: 400;
-            color: #333333;
           }
           /deep/.el-input {
             input {
-              padding-left: 0px;
-              border-top: 0px;
-              border-left: 0px;
-              border-right: 0px;
-              font-size: 14px;
-              font-family: Microsoft YaHei;
-              font-weight: 400;
+              padding-left: 0;
+              border-top: 0;
+              border-right: 0;
+              border-left: 0;
               color: #cfcfcf;
+              font-family: Microsoft YaHei;
+              font-size: 14px;
+              font-weight: 400;
               line-height: 48px;
             }
           }
         }
         #login-btn {
-          margin-top: 30px;
           width: 100%;
           height: 48px;
+          padding: 0 0;
+          margin-top: 30px;
           font-size: 18px;
           line-height: 48px;
-          padding: 0px 0px;
         }
       }
     }
