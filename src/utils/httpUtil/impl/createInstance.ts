@@ -3,7 +3,6 @@ import ResponseHelper from "@/utils/httpUtil/impl/ResponseHelper";
 import { IResponse } from "@/utils/httpUtil/interface/ResponseHelper";
 import { extend, isEmpty } from "@utils/commonUtil";
 import { RequestConfig } from "@/utils/httpUtil/interface/RequestConfig";
-import { Method } from "axios";
 import axios from "axios";
 export function createService(
   httpConfig: HttpConfigInterface
