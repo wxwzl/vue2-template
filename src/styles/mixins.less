@@ -1,9 +1,9 @@
 /* 多出部分用省略号表示 , 用于一行 */
 .ellipsis(@overflow: ellipsis) {
   overflow: hidden;
-  word-wrap: normal;
-  white-space: nowrap;
   text-overflow: @overflow; // values are: clip, ellipsis, or a string
+  white-space: nowrap;
+  word-wrap: normal;
 }
 
 /**
@@ -13,31 +13,31 @@
 * $color: #222 三角形颜色, 默认为 #222
 */
 .triangle(@direction: down, @size: 10px, @color: #000) {
-  content: "";
-  display: block;
   position: absolute;
-  height: 0;
+  display: block;
   width: 0;
+  height: 0;
+  content: "";
 
   & when (@direction = down) {
-    border-color: @color transparent transparent transparent;
-    border-style: solid dashed dashed dashed;
     border-width: @size @size 0 @size;
+    border-style: solid dashed dashed dashed;
+    border-color: @color transparent transparent transparent;
   }
   & when (@direction = up) {
-    border-color: transparent transparent @color transparent;
-    border-style: dashed dashed solid dashed;
     border-width: 0 @size @size @size;
+    border-style: dashed dashed solid dashed;
+    border-color: transparent transparent @color transparent;
   }
   & when ( @direction = right) {
-    border-color: transparent transparent transparent @color;
-    border-style: dashed dashed dashed solid;
     border-width: @size 0 @size @size;
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent @color;
   }
   & when (@direction = left) {
-    border-color: transparent @color transparent transparent;
-    border-style: dashed solid dashed dashed;
     border-width: @size @size @size 0;
+    border-style: dashed solid dashed dashed;
+    border-color: transparent @color transparent transparent;
   }
 }
 
