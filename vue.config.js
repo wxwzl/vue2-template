@@ -6,6 +6,8 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 // const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+const stylelintWebpackPlugin = require("stylelint-webpack-plugin");
+const devServer = require("./buildConfig/devServer");
 function resolve(str) {
   return path.resolve(__dirname, str);
 }
@@ -60,29 +62,7 @@ module.exports = {
     },
   },
   // transpileDependencies: ['vuex-module-decorators'],
-  devServer: {
-    // compress: true,
-    // overlay: { // 让浏览器 overlay 同时显示警告和错误
-    //   warnings: true,
-    //   errors: true
-    // },
-    // open: false, // 是否打开浏览器
-    // host: "localhost",
-    // port: "8080", // 代理断就
-    // https: false,
-    // hotOnly: false, // 热更新
-    proxy: {
-      "/api": {
-        target: "http://192.168.50.142:59010", // 目标代理接口地址
-        secure: false,
-        changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
-        // ws: true, // 是否启用websockets
-        pathRewrite: {
-          "^/api": "/",
-        },
-      },
-    },
-  },
+  devServer: devServer,
   css: {
     extract: IS_PROD,
     sourceMap: false,
@@ -126,6 +106,12 @@ module.exports = {
           files: ["package-lock.json", "yarn.lock"],
         },
       }),
+      new stylelintWebpackPlugin({
+        extensions: ["vue", "css", "less", "scss", "sass"],
+        caches: true,
+        fix: true,
+        failOnError: true,
+      }),
     ],
     entry: "./src/main.ts",
     // resolve:{
@@ -137,15 +123,16 @@ module.exports = {
     // it can be accessed in index.html to inject the correct title.
     config.set("name", process.env.VUE_APP_APPNAME);
     // it can improve the speed of the first screen, it is recommended to turn on preload
-    config.plugin("preload").tap(() => [
-      {
-        rel: "preload",
-        // to ignore runtime.js
-        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
-        fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
-        include: "initial",
-      },
-    ]);
+    // vue-cli内部已经设置preload和prefetch
+    // config.plugin("preload").tap(() => [
+    //   {
+    //     rel: "preload",
+    //     // to ignore runtime.js
+    //     // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
+    //     fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
+    //     include: "initial",
+    //   },
+    // ]);
     // 修复HMR
     config.resolve.symlinks(true);
 
@@ -160,9 +147,9 @@ module.exports = {
       .options({
         symbolId: "icon-[name]",
       });
-    const imagesRule = config.module.rule("images");
-    // imagesRule.exclude.add(resolve("src/icons"));
-    config.module.rule("images").test(/\.(png|jpe?g|gif)(\?.*)?$/);
+    // const imagesRule = config.module.rule("images");
+    // // imagesRule.exclude.add(resolve("src/icons"));
+    // config.module.rule("images").test(/\.(png|jpe?g|gif)(\?.*)?$/);
 
     config.resolve.alias
       // .set("vue$", "vue/dist/vue.esm.js")
