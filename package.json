@@ -80,13 +80,15 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "vue-cli-service lint",
-      "npx prettier --write",
-      "git add"
+    "*.{ts,tsx,js,vue,less}": [
+      "npx prettier --write"
     ],
     "*.{vue,css,less}": [
       "stylelint --fix"
+    ],
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint",
+      "git add"
     ]
   }
 }

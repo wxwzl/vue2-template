@@ -107,6 +107,7 @@ module.exports = {
         },
       }),
       new stylelintWebpackPlugin({
+        files: ["src/**/*.{html,vue,css,sass,scss,less}"],
         extensions: ["vue", "css", "less", "scss", "sass"],
         caches: true,
         fix: true,
