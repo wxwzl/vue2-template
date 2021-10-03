@@ -52,7 +52,7 @@ function _getKey(key: string, option?: Option): any {
  */
 function _set(key: string, val: any, option?: Option) {
   key = _getKey(key, option);
-  getScope(option).set(key, val);
+  getScope(option)?.set(key, val);
 }
 
 /**
@@ -65,7 +65,7 @@ function _set(key: string, val: any, option?: Option) {
  */
 function _get(key: string, option?: Option): any {
   key = _getKey(key, option);
-  return getScope(option).get(key);
+  return getScope(option)?.get(key);
 }
 
 /**
@@ -78,7 +78,7 @@ function _get(key: string, option?: Option): any {
  */
 function _remove(key: string, option?: Option) {
   key = _getKey(key, option);
-  getScope(option).remove(key);
+  getScope(option)?.remove(key);
 }
 
 /**
@@ -89,9 +89,13 @@ function _remove(key: string, option?: Option) {
  * @return {*}
  * @memberof LocalStorageUtil
  */
-function _has(key: string, option?: Option): boolean {
+function _hasStorage(key: string, option?: Option): boolean {
   key = _getKey(key, option);
-  return getScope(option).has(key);
+  const storage = getScope(option);
+  if (storage) {
+    return ((storage as unknown) as Storage).has(key);
+  }
+  return false;
 }
 /**
  *
@@ -101,8 +105,11 @@ function _has(key: string, option?: Option): boolean {
  * @return {*}
  * @memberof LocalStorageUtil
  */
-function _forEach(callBack: any, option?: Option): void {
-  getScope(option).forEach(callBack);
+function _forEachStorage(callBack: any, option?: Option): void {
+  const storage = getScope(option);
+  if (storage) {
+    return ((storage as unknown) as Storage).has(callBack);
+  }
 }
 
 /**
@@ -112,8 +119,11 @@ function _forEach(callBack: any, option?: Option): void {
  * @return {*}
  * @memberof LocalStorageUtil
  */
-function _clear(option?: Option): void {
-  getScope(option).clear();
+function _clearStorage(option?: Option): void {
+  const storage = getScope(option);
+  if (storage) {
+    return ((storage as unknown) as Storage).clear();
+  }
 }
 
 /**
@@ -123,8 +133,12 @@ function _clear(option?: Option): void {
  * @return {*}
  * @memberof LocalStorageUtil
  */
-function _getAll(option?: Option): Array<any> {
-  return getScope(option).getAll();
+function _getAllStorage(option?: Option): Array<any> {
+  const storage = getScope(option);
+  if (storage) {
+    return ((storage as unknown) as Storage).getAll();
+  }
+  return [];
 }
 
 /**
@@ -150,8 +164,8 @@ export function getScope(option?: Option) {
   }
 }
 
-export function forEach(callback: any, option?: Option) {
-  return _forEach(callback, option);
+export function forEachStorage(callback: any, option?: Option) {
+  return _forEachStorage(callback, option);
 }
 
 /**
@@ -175,16 +189,16 @@ export function remove(key: string, option?: Option) {
   return _remove(key, option);
 }
 
-export function has(key: string, option?: Option): boolean {
-  return _has(key, option);
+export function hasStorage(key: string, option?: Option): boolean {
+  return _hasStorage(key, option);
 }
 
-export function clear(option?: Option): void {
-  return _clear(option);
+export function clearStorage(option?: Option): void {
+  return _clearStorage(option);
 }
 
-export function getAll(option?: Option): Array<any> {
-  return _getAll(option);
+export function getAllStorage(option?: Option): Array<any> {
+  return _getAllStorage(option);
 }
 
 /**
@@ -234,7 +248,7 @@ export function hasSession(key: string, option?: Option): boolean {
   } else {
     extend(option, { scopeName: scopeNameMap.session });
   }
-  return _has(key, option);
+  return _hasStorage(key, option);
 }
 
 /**
@@ -260,7 +274,7 @@ export function removeSession(key: string, option?: Option): void {
  * @memberof LocalStorageUtil
  */
 export function clearSession(): void {
-  return _clear({ scopeName: scopeNameMap.session });
+  return _clearStorage({ scopeName: scopeNameMap.session });
 }
 
 export function setCookie(key: string, value: any, option?: Option): void {

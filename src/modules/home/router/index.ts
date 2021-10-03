@@ -6,7 +6,7 @@ const routes: Array<CustomRoute> = [
     component: (): any => import("@/modules/home/pages/Home.vue"),
     meta: {
       hidden: true,
-      title: process.env.appName,
+      title: process.env.VUE_APP_APPNAME,
     },
   },
 ];

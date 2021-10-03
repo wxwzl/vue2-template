@@ -2,7 +2,7 @@ import VueRouter from "vue-router";
 
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-const openNProgress = new Boolean(process.env.openNProgress);
+const openNProgress = new Boolean(process.env.VUE_APP_OPENNProgress);
 export function createProgressStartGuard(router: VueRouter): void {
   if (openNProgress) {
     router.beforeEach(async (to, from, next) => {
