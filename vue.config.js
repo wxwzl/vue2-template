@@ -3,25 +3,12 @@ const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
 const path = require("path");
 
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-// const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const stylelintWebpackPlugin = require("stylelint-webpack-plugin");
 const devServer = require("./buildConfig/devServer");
 function resolve(str) {
   return path.resolve(__dirname, str);
-}
-
-function walkArray(array, hanlder, context) {
-  if (!array) {
-    return;
-  }
-  let len = array.length;
-  let value;
-  for (let i = 0; i < len; i++) {
-    value = array[i];
-    hanlder && hanlder.call(context, value, i, array);
-  }
 }
 
 let publicPath = process.env.VUE_APP_PUBLIC_PATH + process.env.VUE_APP_STATICDIR;
@@ -114,12 +101,13 @@ module.exports = {
         failOnError: true,
       }),
     ],
-    entry: "./src/main.ts",
+    // entry: "./src/main.ts",
     // resolve:{
     //   extensions:[".js", ".vue", ".json",".ts"],
     // }
   },
   chainWebpack(config) {
+    config.entry("app").clear().add("./src/main.ts");
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     config.set("name", process.env.VUE_APP_APPNAME);
