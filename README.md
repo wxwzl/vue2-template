@@ -14,7 +14,7 @@
 - git 提交信息校验
 - 通过 npm 命令生成 changelog
 - 部分常用工具类
-- 可用的ServiceWorker
+- 可用的 ServiceWorker
 
 ## 特别说明
 

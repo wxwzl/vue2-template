@@ -14,16 +14,16 @@ function resolve(str) {
 let publicPath = process.env.VUE_APP_PUBLIC_PATH + process.env.VUE_APP_STATICDIR;
 
 const cdn = {
-  css: [publicPath + "/elementui-2.13.2/theme/index.css"],
+  css: [publicPath + "/elementui-2.15.6/theme/index.css"],
   js: [
-    publicPath + "/vue-router-3.4.7/vue-router.min.js",
-    publicPath + "/vuex-3.5.1/vuex.min.js",
+    publicPath + "/vue-router-3.5.3/vue-router.min.js",
+    publicPath + "/vuex-3.6.2/vuex.min.js",
     publicPath +
       (process.env.NODE_ENV == "development"
-        ? "/vue-2.6.11/vue.js"
-        : "/vue-2.6.11/vue.runtime.min.js"),
-    publicPath + "/elementui-2.13.2/lib/index.js",
-    publicPath + "/axios-0.20.0/axios.js",
+        ? "/vue-2.6.14/vue.js"
+        : "/vue-2.6.14/vue.runtime.min.js"),
+    publicPath + "/elementui-2.15.6/lib/index.js",
+    publicPath + "/axios-0.24.0/axios.js",
   ],
 };
 

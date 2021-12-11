@@ -4,9 +4,10 @@ import { IResponse } from "@/utils/httpUtil/interface/ResponseHelper";
 import { extend, isEmpty } from "@utils/commonUtil";
 import { RequestConfig } from "@/utils/httpUtil/interface/RequestConfig";
 import axios from "axios";
-export function createService(
-  httpConfig: HttpConfigInterface
-): { service: any; request: (option: RequestConfig) => Promise<any> } {
+export function createService(httpConfig: HttpConfigInterface): {
+  service: any;
+  request: (option: RequestConfig) => Promise<any>;
+} {
   const responseHelper = new ResponseHelper(httpConfig.ErrorArray);
   const service = axios.create({
     baseURL: httpConfig.baseURL, // url = base url + request url
@@ -62,26 +63,22 @@ export function createService(
       option.originalData = httpConfig.defaultOriginalData;
     }
     return service(option)
-      .then(
-        (res: any): Promise<T> => {
-          if (option.validator && option.validator(res) != true) {
-            return Promise.reject(res);
-          }
-          if (option.originalData) {
-            return Promise.resolve(res);
-          } else {
-            return Promise.resolve(res.data);
-          }
+      .then((res: any): Promise<T> => {
+        if (option.validator && option.validator(res) != true) {
+          return Promise.reject(res);
         }
-      )
-      .catch(
-        (err: IResponse<any>): Promise<T> => {
-          if (option.ignoreError != true) {
-            httpConfig.errorHandler(err);
-          }
-          return Promise.reject(err);
+        if (option.originalData) {
+          return Promise.resolve(res);
+        } else {
+          return Promise.resolve(res.data);
         }
-      );
+      })
+      .catch((err: IResponse<any>): Promise<T> => {
+        if (option.ignoreError != true) {
+          httpConfig.errorHandler(err);
+        }
+        return Promise.reject(err);
+      });
   }
   return { service, request };
 }

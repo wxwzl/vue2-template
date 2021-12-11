@@ -1,5 +1,3 @@
-declare module "nprogress";
-
 declare module "window";
 
 declare module "document";
@@ -19,3 +17,11 @@ declare namespace NodeJS {
     readonly VUE_APP_APPNAME: string;
   }
 }
+
+declare module "*.svg";
+declare module "*.png";
+declare module "*.jpg";
+declare module "*.jpeg";
+declare module "*.gif";
+declare module "*.bmp";
+declare module "*.tiff";

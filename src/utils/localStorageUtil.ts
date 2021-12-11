@@ -93,7 +93,7 @@ function _hasStorage(key: string, option?: Option): boolean {
   key = _getKey(key, option);
   const storage = getScope(option);
   if (storage) {
-    return ((storage as unknown) as Storage).has(key);
+    return (storage as unknown as Storage).has(key);
   }
   return false;
 }
@@ -108,7 +108,7 @@ function _hasStorage(key: string, option?: Option): boolean {
 function _forEachStorage(callBack: any, option?: Option): void {
   const storage = getScope(option);
   if (storage) {
-    return ((storage as unknown) as Storage).has(callBack);
+    return (storage as unknown as Storage).has(callBack);
   }
 }
 
@@ -122,7 +122,7 @@ function _forEachStorage(callBack: any, option?: Option): void {
 function _clearStorage(option?: Option): void {
   const storage = getScope(option);
   if (storage) {
-    return ((storage as unknown) as Storage).clear();
+    return (storage as unknown as Storage).clear();
   }
 }
 
@@ -136,7 +136,7 @@ function _clearStorage(option?: Option): void {
 function _getAllStorage(option?: Option): Array<any> {
   const storage = getScope(option);
   if (storage) {
-    return ((storage as unknown) as Storage).getAll();
+    return (storage as unknown as Storage).getAll();
   }
   return [];
 }
