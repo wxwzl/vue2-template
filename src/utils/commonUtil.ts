@@ -32,6 +32,10 @@ export function isFunction(obj: any) {
   return Object.prototype.toString.call(obj) == "[object Function]";
 }
 
+export function isDate(obj: any) {
+  return Object.prototype.toString.call(obj) == "[object Date]";
+}
+
 export function walkObj(
   obj: Record<string, any>,
   handler: (value: any, key: string, obj: any) => void | boolean,

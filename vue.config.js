@@ -7,10 +7,11 @@ const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const stylelintWebpackPlugin = require("stylelint-webpack-plugin");
 const devServer = require("./buildConfig/devServer");
+const { getEnv, MultiEnvHtmlWebpackPlugin } = require("multi-env-html-webpack-plugin");
+
 function resolve(str) {
   return path.resolve(__dirname, str);
 }
-
 let publicPath = process.env.VUE_APP_PUBLIC_PATH + process.env.VUE_APP_STATICDIR;
 
 const cdn = {
@@ -26,6 +27,7 @@ const cdn = {
     publicPath + "/axios-0.24.0/axios.js",
   ],
 };
+const globalEnvName = "_env";
 
 module.exports = {
   publicPath: process.env.VUE_APP_PUBLIC_PATH, // 默认'/'，部署应用包时的基本 URL
@@ -100,6 +102,33 @@ module.exports = {
         fix: true,
         failOnError: true,
       }),
+      new MultiEnvHtmlWebpackPlugin([
+        {
+          index: "./dist/index.html",
+          outputs: [
+            {
+              data: { [`${globalEnvName}`]: getEnv(process.env.mode) },
+              file: "./dist/index.html",
+            },
+            {
+              data: { [`${globalEnvName}`]: getEnv("development") },
+              file: "./dist/index-development.html",
+            },
+            {
+              data: { [`${globalEnvName}`]: getEnv("test") },
+              file: "./dist/index-test.html",
+            },
+            {
+              data: { [`${globalEnvName}`]: getEnv("production") },
+              file: "./dist/index-production.html",
+            },
+            {
+              data: { [`${globalEnvName}`]: getEnv("uat") },
+              file: "./dist/index-uat.html",
+            },
+          ],
+        },
+      ]),
     ],
     // entry: "./src/main.ts",
     // resolve:{
@@ -108,6 +137,13 @@ module.exports = {
   },
   chainWebpack(config) {
     config.entry("app").clear().add("./src/main.ts");
+    config.plugin("define").tap(() => {
+      return [
+        {
+          "process.env": `window.${globalEnvName}`,
+        },
+      ];
+    });
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     config.set("name", process.env.VUE_APP_APPNAME);
