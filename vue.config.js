@@ -129,7 +129,9 @@ module.exports = {
                 file: "./dist/index-uat.html",
               },
               {
-                data: { [`${globalEnvName}`]: getEnv(process.env.mode) },
+                data: {
+                  [`${globalEnvName}`]: getEnv(process.env.VUE_APP_MODE),
+                },
                 file: "./dist/index.html",
               },
             ],
@@ -137,6 +139,7 @@ module.exports = {
         ])
       );
     }
+    return config;
   },
   chainWebpack(config) {
     config.entry("app").clear().add("./src/main.ts");
