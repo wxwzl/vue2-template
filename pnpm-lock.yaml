@@ -3,7 +3,6 @@ lockfileVersion: 5.3
 specifiers:
   '@commitlint/cli': ^11.0.0
   '@commitlint/config-conventional': ^11.0.0
-  '@types/axios': ^0.14.0
   '@types/good-storage': ^1.1.0
   '@types/jest': ^26.0.14
   '@types/js-cookie': ^3.0.0
@@ -40,7 +39,7 @@ specifiers:
   less: ^3.12.2
   less-loader: ^7.0.2
   lint-staged: ^10.4.2
-  multi-env-html-webpack-plugin: 1.0.0-beta.1
+  multi-env-html-webpack-plugin: 1.0.0-beta.8
   node-object-hash: ^2.0.0
   nprogress: ^0.2.0
   postcss-pxtorem: ^5.1.1
@@ -83,7 +82,6 @@ dependencies:
 devDependencies:
   '@commitlint/cli': 11.0.0
   '@commitlint/config-conventional': 11.0.0
-  '@types/axios': 0.14.0
   '@types/good-storage': 1.1.0
   '@types/jest': 26.0.24
   '@types/js-cookie': 3.0.1
@@ -115,7 +113,7 @@ devDependencies:
   less: 3.13.1
   less-loader: 7.3.0_less@3.13.1+webpack@4.46.0
   lint-staged: 10.5.4
-  multi-env-html-webpack-plugin: 1.0.0-beta.1
+  multi-env-html-webpack-plugin: 1.0.0-beta.8
   node-object-hash: 2.3.10
   postcss-pxtorem: 5.1.1
   prettier: 2.5.1
@@ -1800,15 +1798,6 @@ packages:
       - supports-color
     dev: true
 
-  /@types/axios/0.14.0:
-    resolution: {integrity: sha1-7CMA++fX3d1+udOr+HmZlkyvzkY=}
-    deprecated: This is a stub types definition for axios (https://github.com/mzabriskie/axios). axios provides its own type definitions, so you don't need @types/axios installed!
-    dependencies:
-      axios: 0.24.0
-    transitivePeerDependencies:
-      - debug
-    dev: true
-
   /@types/babel__core/7.1.17:
     resolution: {integrity: sha512-6zzkezS9QEIL8yCBvXWxPTJPNuMeECJVxSOhxNY/jfq9LxOTHivaYTqr37n9LknWWRTIkzqH2UilS5QFvfa90A==}
     dependencies:
@@ -3172,6 +3161,7 @@ packages:
       follow-redirects: 1.14.6
     transitivePeerDependencies:
       - debug
+    dev: false
 
   /babel-code-frame/6.26.0:
     resolution: {integrity: sha1-Y/1D99weO7fONZR9uP42mj9Yx0s=}
@@ -5301,6 +5291,11 @@ packages:
     resolution: {integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==}
     dev: true
 
+  /dotenv/10.0.0:
+    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
+    engines: {node: '>=10'}
+    dev: true
+
   /dotenv/8.6.0:
     resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
     engines: {node: '>=10'}
@@ -6198,18 +6193,6 @@ packages:
       debug:
         optional: true
 
-  /follow-redirects/1.14.6_debug@4.3.3:
-    resolution: {integrity: sha512-fhUl5EwSJbbl8AR+uYL2KQDxLkdSjZGR36xy46AO7cOMTrCMON6Sa28FmAnC2tRTDbd/Uuzz3aJBv7EBN7JH8A==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.3
-    dev: true
-
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
@@ -7011,7 +6994,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.6_debug@4.3.3
+      follow-redirects: 1.14.6
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -9208,11 +9191,13 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /multi-env-html-webpack-plugin/1.0.0-beta.1:
-    resolution: {integrity: sha512-NJxk/5HZVO3U5bUvDC9ugjYPGTy42KRkGd8R4CV8FGwdjcA/Uyvh5JohLshDgC7PBIiDef4dqmfCeK/x8ooh2A==}
+  /multi-env-html-webpack-plugin/1.0.0-beta.8:
+    resolution: {integrity: sha512-S8dIr2ep1nqM7pn23t2LDf4O3nxYAUsPnAWQKU3rF+TExmW5WQaNUCUbyS8VeKKqJN/9NDf3cv2gs78A+S0aPg==}
     dependencies:
       chalk: 4.1.2
       cheerio: 1.0.0-rc.10
+      dotenv: 10.0.0
+      dotenv-expand: 5.1.0
     dev: true
 
   /multicast-dns-service-types/1.1.0:
