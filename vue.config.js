@@ -48,7 +48,7 @@ module.exports = {
       msTileImage: "favicon.ico",
     },
     workboxOptions: {
-      exclude: [/index\.html$/, /service-worker\.js$/],
+      exclude: [/index\.html$/, /service-worker\.js$/, /favicon\.ico$/, /img\/icons/],
     },
   },
   // transpileDependencies: ['vuex-module-decorators'],
@@ -157,16 +157,15 @@ module.exports = {
     // it can be accessed in index.html to inject the correct title.
     config.set("name", process.env.VUE_APP_APPNAME);
     // it can improve the speed of the first screen, it is recommended to turn on preload
-    // vue-cli内部已经设置preload和prefetch
-    // config.plugin("preload").tap(() => [
-    //   {
-    //     rel: "preload",
-    //     // to ignore runtime.js
-    //     // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
-    //     fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
-    //     include: "initial",
-    //   },
-    // ]);
+    config.plugin("preload").tap(() => [
+      {
+        rel: "preload",
+        // to ignore runtime.js
+        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
+        fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
+        include: "initial",
+      },
+    ]);
     // 修复HMR
     config.resolve.symlinks(true);
 
